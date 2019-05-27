@@ -9,7 +9,7 @@ import (
 func Benchmark_expr(b *testing.B) {
 	env := create()
 
-	script, err := expr.Parse(full)
+	script, err := expr.Parse(example)
 	if err != nil {
 		b.Fatal(err)
 	}

@@ -11,19 +11,20 @@ func Benchmark_otto(b *testing.B) {
 
 	vm := otto.New()
 
-	script, err := vm.Compile("", full)
+	script, err := vm.Compile("", example)
 	if err != nil {
 		b.Fatal(err)
 	}
 
-	_ = vm.Set("Segments", env.Segments)
-	_ = vm.Set("Passengers", env.Passengers)
-	_ = vm.Set("Country", env.Country)
-	_ = vm.Set("Tickets", env.Tickets)
-
 	var out otto.Value
 
 	for n := 0; n < b.N; n++ {
+		// We need to set new params of every iteration,
+		// to simulate new requests with new parameters.
+		_ = vm.Set("Origin", env.Origin)
+		_ = vm.Set("Country", env.Country)
+		_ = vm.Set("Adults", env.Adults)
+		_ = vm.Set("Value", env.Value)
 		out, err = vm.Run(script)
 	}
 
