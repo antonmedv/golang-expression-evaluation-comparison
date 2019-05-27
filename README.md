@@ -1,1 +1,1 @@
-# golang-expression-evaluation-comparison
+# Go expression evaluation comparison
