@@ -27,7 +27,8 @@ type Env struct {
 	Country    string
 }
 
-const input = `(Segments[0].Origin == "MOW" || Country == "RU") && (Tickets[0].Prices["oneway"].Value >= 100 || Passengers.Adults == 1)`
+const full = `(Segments[0].Origin == "MOW" || Country == "RU") && (Tickets[0].Prices["oneway"].Value >= 100 || Passengers.Adults == 1)`
+const simple = `(Origin == "MOW" || Country == "RU") && (Value >= 100 || Adults == 1)`
 
 func create() *Env {
 	return &Env{

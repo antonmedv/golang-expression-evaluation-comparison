@@ -10,7 +10,7 @@ func Benchmark_goja(b *testing.B) {
 	env := create()
 
 	vm := goja.New()
-	program, err := goja.Compile("", input, false)
+	program, err := goja.Compile("", full, false)
 	if err != nil {
 		b.Fatal(err)
 	}

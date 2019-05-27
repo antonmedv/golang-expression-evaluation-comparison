@@ -11,7 +11,7 @@ func Benchmark_otto(b *testing.B) {
 
 	vm := otto.New()
 
-	script, err := vm.Compile("", input)
+	script, err := vm.Compile("", full)
 	if err != nil {
 		b.Fatal(err)
 	}
