@@ -7,7 +7,7 @@ import (
 )
 
 func Benchmark_goja(b *testing.B) {
-	env := create()
+	params := createParams()
 
 	vm := goja.New()
 	program, err := goja.Compile("", example, false)
@@ -15,15 +15,14 @@ func Benchmark_goja(b *testing.B) {
 		b.Fatal(err)
 	}
 
+	vm.Set("Origin", params["Origin"])
+	vm.Set("Country", params["Country"])
+	vm.Set("Adults", params["Adults"])
+	vm.Set("Value", params["Value"])
+
 	var out goja.Value
 
 	for n := 0; n < b.N; n++ {
-		// We need to set new params of every iteration,
-		// to simulate new requests with new parameters.
-		vm.Set("Origin", env.Origin)
-		vm.Set("Country", env.Country)
-		vm.Set("Adults", env.Adults)
-		vm.Set("Value", env.Value)
 		out, err = vm.RunProgram(program)
 	}
 

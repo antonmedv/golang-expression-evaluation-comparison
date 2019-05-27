@@ -1,22 +1,16 @@
 package main
 
 import (
+	"github.com/antonmedv/expr"
 	"testing"
 
-	"github.com/antonmedv/expr/compiler"
-	"github.com/antonmedv/expr/parser"
 	"github.com/antonmedv/expr/vm"
 )
 
 func Benchmark_expr(b *testing.B) {
-	env := create()
+	params := createParams()
 
-	tree, err := parser.Parse(example)
-	if err != nil {
-		b.Fatal(err)
-	}
-
-	program, err := compiler.Compile(tree)
+	program, err := expr.Compile(example, expr.Env(params))
 	if err != nil {
 		b.Fatal(err)
 	}
@@ -24,7 +18,7 @@ func Benchmark_expr(b *testing.B) {
 	var out interface{}
 
 	for n := 0; n < b.N; n++ {
-		out, err = vm.Run(program, env)
+		out, err = vm.Run(program, params)
 	}
 
 	if err != nil {

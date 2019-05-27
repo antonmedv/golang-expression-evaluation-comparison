@@ -9,7 +9,7 @@ import (
 )
 
 func Benchmark_celgo(b *testing.B) {
-	vars := create()
+	params := createParams()
 
 	env, err := cel.NewEnv(
 		cel.Declarations(
@@ -39,11 +39,6 @@ func Benchmark_celgo(b *testing.B) {
 	var out ref.Val
 
 	for n := 0; n < b.N; n++ {
-		params := make(map[string]interface{})
-		params["Origin"] = vars.Origin
-		params["Country"] = vars.Country
-		params["Adults"] = vars.Adults
-		params["Value"] = vars.Value
 		out, _, err = prg.Eval(params)
 	}
 

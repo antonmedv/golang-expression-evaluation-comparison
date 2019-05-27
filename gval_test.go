@@ -7,13 +7,13 @@ import (
 )
 
 func Benchmark_gval(b *testing.B) {
-	env := create()
+	params := createParams()
 
 	var out interface{}
 	var err error
 
 	for n := 0; n < b.N; n++ {
-		out, err = gval.Evaluate(example, env)
+		out, err = gval.Evaluate(example, params)
 	}
 
 	if err != nil {

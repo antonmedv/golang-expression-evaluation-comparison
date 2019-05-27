@@ -7,13 +7,19 @@ import (
 )
 
 func Benchmark_bexpr(b *testing.B) {
-	env := create()
+	p := createParams()
+	params := Params{
+		Origin:  p["Origin"].(string),
+		Country: p["Country"].(string),
+		Value:   p["Value"].(int),
+		Adults:  p["Adults"].(int),
+	}
 
 	// Replace operators and parentheses as bexpr can't parse them correctly. So sad :(
 	eval, err := bexpr.CreateEvaluatorForType(
 		`Origin == "MOW" and Country == "RU" and Value == 100 and Adults == 1`,
 		nil,
-		&Env{},
+		Params{},
 	)
 	if err != nil {
 		b.Fatal(err)
@@ -22,7 +28,7 @@ func Benchmark_bexpr(b *testing.B) {
 	var out interface{}
 
 	for n := 0; n < b.N; n++ {
-		out, err = eval.Evaluate(env)
+		out, err = eval.Evaluate(params)
 	}
 
 	if err != nil {
