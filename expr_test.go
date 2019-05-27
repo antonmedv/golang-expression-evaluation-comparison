@@ -1,10 +1,9 @@
 package main
 
 import (
-	"github.com/antonmedv/expr"
 	"testing"
 
-	"github.com/antonmedv/expr/vm"
+	"github.com/antonmedv/expr"
 )
 
 func Benchmark_expr(b *testing.B) {
@@ -18,7 +17,7 @@ func Benchmark_expr(b *testing.B) {
 	var out interface{}
 
 	for n := 0; n < b.N; n++ {
-		out, err = vm.Run(program, params)
+		out, err = expr.Run(program, params)
 	}
 
 	if err != nil {
