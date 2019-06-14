@@ -20,6 +20,8 @@ github.com/antonmedv/expr v1.1.5-0.20190528155942-f7c65daf32af h1:z+rKvAzA11d6Tv
 github.com/antonmedv/expr v1.1.5-0.20190528155942-f7c65daf32af/go.mod h1:UVdIWDgu0PlfPsjLBrjszJptS9Et9jK1aXR/9JE+LBQ=
 github.com/antonmedv/expr v1.1.5-0.20190529085640-4ad9e52cbc8e h1:OW1lmYhpFOXtx0zqzUoolMSgHTFoeizFaE/HSDwCdW4=
 github.com/antonmedv/expr v1.1.5-0.20190529085640-4ad9e52cbc8e/go.mod h1:UVdIWDgu0PlfPsjLBrjszJptS9Et9jK1aXR/9JE+LBQ=
+github.com/antonmedv/expr v1.1.5-0.20190614111829-1236a98bb516 h1:oSVagiQ5S1EsUIhioQt7mx7ndenTTKPEOI1okllYAX0=
+github.com/antonmedv/expr v1.1.5-0.20190614111829-1236a98bb516/go.mod h1:UVdIWDgu0PlfPsjLBrjszJptS9Et9jK1aXR/9JE+LBQ=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dlclark/regexp2 v1.1.6 h1:CqB4MjHw0MFCDj+PHHjiESmHX+N7t0tJzKvC6M97BRg=

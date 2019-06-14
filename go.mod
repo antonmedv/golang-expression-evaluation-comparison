@@ -5,7 +5,7 @@ go 1.12
 require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/PaesslerAG/gval v1.0.1
-	github.com/antonmedv/expr v1.1.5-0.20190529085640-4ad9e52cbc8e
+	github.com/antonmedv/expr v1.1.5-0.20190614111829-1236a98bb516
 	github.com/dlclark/regexp2 v1.1.6 // indirect
 	github.com/dop251/goja v0.0.0-20190520194301-084dd324c724
 	github.com/go-sourcemap/sourcemap v2.1.2+incompatible // indirect
