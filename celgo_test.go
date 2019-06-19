@@ -38,9 +38,11 @@ func Benchmark_celgo(b *testing.B) {
 
 	var out ref.Val
 
+	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
 		out, _, err = prg.Eval(params)
 	}
+	b.StopTimer()
 
 	if err != nil {
 		b.Fatal(err)
@@ -81,9 +83,11 @@ func Benchmark_celgo_startswith(b *testing.B) {
 
 	var out ref.Val
 
+	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
 		out, _, err = prg.Eval(params)
 	}
+	b.StopTimer()
 
 	if err != nil {
 		b.Fatal(err)

@@ -22,9 +22,11 @@ func Benchmark_goja(b *testing.B) {
 
 	var out goja.Value
 
+	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
 		out, err = vm.RunProgram(program)
 	}
+	b.StopTimer()
 
 	if err != nil {
 		b.Fatal(err)

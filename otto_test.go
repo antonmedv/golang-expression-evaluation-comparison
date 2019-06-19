@@ -23,9 +23,11 @@ func Benchmark_otto(b *testing.B) {
 
 	var out otto.Value
 
+	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
 		out, err = vm.Run(script)
 	}
+	b.StopTimer()
 
 	if err != nil {
 		b.Fatal(err)
