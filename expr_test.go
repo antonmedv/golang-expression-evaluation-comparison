@@ -36,7 +36,7 @@ func Benchmark_expr_startswith(b *testing.B) {
 		"group": "foo",
 	}
 
-	program, err := expr.Compile(`name startsWith "/groups/" + "foo"`, expr.Env(params))
+	program, err := expr.Compile(`name startsWith "/groups/" + group`, expr.Env(params))
 	if err != nil {
 		b.Fatal(err)
 	}
