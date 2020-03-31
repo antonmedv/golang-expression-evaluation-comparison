@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"testing"
 
 	"github.com/PaesslerAG/gval"
@@ -12,9 +13,15 @@ func Benchmark_gval(b *testing.B) {
 	var out interface{}
 	var err error
 
+	ctx := context.Background()
+	eval, err := gval.Full().NewEvaluable(example)
+	if err != nil {
+		b.Fatal(err)
+	}
+
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		out, err = gval.Evaluate(example, params)
+		out, err = eval(ctx, params)
 	}
 	b.StopTimer()
 
