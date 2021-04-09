@@ -4,16 +4,18 @@ go 1.12
 
 require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
-	github.com/PaesslerAG/gval v1.0.1
-	github.com/antonmedv/expr v1.1.5-0.20190614111829-1236a98bb516
-	github.com/dlclark/regexp2 v1.1.6 // indirect
-	github.com/dop251/goja v0.0.0-20190520194301-084dd324c724
-	github.com/go-sourcemap/sourcemap v2.1.2+incompatible // indirect
-	github.com/google/cel-go v0.2.0
-	github.com/hashicorp/go-bexpr v0.1.0
-	github.com/robertkrimen/otto v0.0.0-20180617131154-15f95af6e78d
-	github.com/skx/evalfilter/v2 v2.1.2
-	go.starlark.net v0.0.0-20190604130855-6ddc71c0ba77
+	github.com/PaesslerAG/gval v1.1.0
+	github.com/PaesslerAG/jsonpath v0.1.1 // indirect
+	github.com/antlr/antlr4 v0.0.0-20210408161727-b71f6894c7cb // indirect
+	github.com/antonmedv/expr v1.8.9
+	github.com/dop251/goja v0.0.0-20210406175830-1b11a6af686d
+	github.com/google/cel-go v0.7.3
+	github.com/hashicorp/go-bexpr v0.1.7
+	github.com/robertkrimen/otto v0.0.0-20200922221731-ef014fd054ac
+	github.com/skx/evalfilter/v2 v2.1.14
+	go.starlark.net v0.0.0-20210406145628-7a1108eaa012
+	golang.org/x/sys v0.0.0-20210403161142-5e06dd20ab57 // indirect
+	google.golang.org/genproto v0.0.0-20210406143921-e86de6bf7a46 // indirect
 	gopkg.in/sourcemap.v1 v1.0.5 // indirect
-	gopkg.in/yaml.v2 v2.2.5 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
