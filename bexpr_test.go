@@ -16,11 +16,8 @@ func Benchmark_bexpr(b *testing.B) {
 	}
 
 	// Replace operators and parentheses as bexpr can't parse them correctly. So sad :(
-	eval, err := bexpr.CreateEvaluatorForType(
-		`Origin == "MOW" and Country == "RU" and Value == 100 and Adults == 1`,
-		nil,
-		Params{},
-	)
+	eval, err := bexpr.CreateEvaluator(
+		`Origin == "MOW" and Country == "RU" and Value == 100 and Adults == 1`)
 	if err != nil {
 		b.Fatal(err)
 	}
