@@ -6,14 +6,17 @@ against other similar project. So I created this this repository with benchmarks
 Here is results (lower is better):
 
 ```
-Benchmark_expr-8               	10000000	       244 ns/op
-Benchmark_celgo-8              	 5000000	       422 ns/op
-Benchmark_govaluate-8          	 3000000	       423 ns/op
-Benchmark_goja-8               	 3000000	       464 ns/op
-Benchmark_bexpr-8              	 2000000	       802 ns/op
-Benchmark_otto-8               	 1000000	      1336 ns/op
-Benchmark_starlark-8           	  200000	      7885 ns/op
-Benchmark_gval-8               	  200000	      9770 ns/op
+Benchmark_expr-24                	152140300	       158.2 ns/op
+Benchmark_celgo-24               	100000000	       212.1 ns/op
+Benchmark_expr_startswith-24     	 81988958	       292.4 ns/op
+Benchmark_govaluate-24           	 76476085	       319.9 ns/op
+Benchmark_goja-24                	 73179843	       330.7 ns/op
+Benchmark_celgo_startswith-24    	 71623069	       336.4 ns/op
+Benchmark_otto-24                	 30886207	       770.0 ns/op
+Benchmark_gval-24                	 31006279	       774.4 ns/op
+Benchmark_evalfilter-24          	 14328974	        1671 ns/op
+Benchmark_bexpr-24               	  9910032	        2422 ns/op
+Benchmark_starlark-24            	  4702758	        5082 ns/op
 ```
 
 ## Usage
