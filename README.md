@@ -5,15 +5,23 @@ against other similar project. So I created this this repository with benchmarks
 
 Here is results (lower is better):
 
+Basic Benchmark:
 ```
-Benchmark_expr-8               	10000000	       244 ns/op
-Benchmark_celgo-8              	 5000000	       422 ns/op
-Benchmark_govaluate-8          	 3000000	       423 ns/op
-Benchmark_goja-8               	 3000000	       464 ns/op
-Benchmark_bexpr-8              	 2000000	       802 ns/op
-Benchmark_otto-8               	 1000000	      1336 ns/op
-Benchmark_starlark-8           	  200000	      7885 ns/op
-Benchmark_gval-8               	  200000	      9770 ns/op
+Benchmark_expr-16                       184196986              134.2 ns/op
+Benchmark_celgo-16                      122053126              187.4 ns/op
+Benchmark_govaluate-16                  77529223               295.3 ns/op
+Benchmark_goja-16                       79449454               331.2 ns/op
+Benchmark_gval-16                       30330537               744.4 ns/op
+Benchmark_otto-16                       30256912               860.9 ns/op
+Benchmark_evalfilter-16                 13407027               1780 ns/op
+Benchmark_bexpr-16                      10721992               2309 ns/op
+Benchmark_starlark-16                    4600719               5295 ns/op
+```
+
+StartsWith Benchmark:
+```
+Benchmark_expr_startswith-16            81022359               280.1 ns/op
+Benchmark_celgo_startswith-16           66076286               327.7 ns/op
 ```
 
 ## Usage
