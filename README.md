@@ -5,6 +5,13 @@ against other similar project. So I created this this repository with benchmarks
 
 Here is results (lower is better):
 
+Benchmarks are run with the following specs:
+```
+goos: darwin
+goarch: amd64
+cpu: Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz
+```
+
 Basic Benchmark:
 ```
 Benchmark_expr-16                       184196986              134.2 ns/op
