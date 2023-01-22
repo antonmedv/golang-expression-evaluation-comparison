@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/google/cel-go/cel"
-	"github.com/google/cel-go/checker/decls"
+	"github.com/google/cel-go/common/types"
 	"github.com/google/cel-go/common/types/ref"
 )
 
@@ -12,12 +12,10 @@ func Benchmark_celgo(b *testing.B) {
 	params := createParams()
 
 	env, err := cel.NewEnv(
-		cel.Declarations(
-			decls.NewIdent("Origin", decls.String, nil),
-			decls.NewIdent("Country", decls.String, nil),
-			decls.NewIdent("Value", decls.Int, nil),
-			decls.NewIdent("Adults", decls.Int, nil),
-		),
+		cel.Variable("Origin", cel.StringType),
+		cel.Variable("Country", cel.StringType),
+		cel.Variable("Value", cel.IntType),
+		cel.Variable("Adults", cel.IntType),
 	)
 	if err != nil {
 		b.Fatal(err)
@@ -59,10 +57,8 @@ func Benchmark_celgo_startswith(b *testing.B) {
 	}
 
 	env, err := cel.NewEnv(
-		cel.Declarations(
-			decls.NewIdent("name", decls.String, nil),
-			decls.NewIdent("group", decls.String, nil),
-		),
+		cel.Variable("name", cel.StringType),
+		cel.Variable("group", cel.StringType),
 	)
 	if err != nil {
 		b.Fatal(err)
@@ -93,6 +89,50 @@ func Benchmark_celgo_startswith(b *testing.B) {
 		b.Fatal(err)
 	}
 	if !out.Value().(bool) {
+		b.Fail()
+	}
+}
+
+func Benchmark_celgo_func(b *testing.B) {
+	params := map[string]interface{}{}
+
+	env, err := cel.NewEnv(
+		cel.Function("join",
+			cel.Overload("join_string_string",
+				[]*cel.Type{cel.StringType, cel.StringType},
+				cel.StringType,
+				cel.BinaryBinding(func(lhs, rhs ref.Val) ref.Val {
+					return types.String(lhs.Value().(string) + rhs.Value().(string))
+				}))))
+	if err != nil {
+		b.Fatal(err)
+	}
+
+	parsed, issues := env.Parse(`join("hello", ", world")`)
+	if issues != nil && issues.Err() != nil {
+		b.Fatalf("parse error: %s", issues.Err())
+	}
+	checked, issues := env.Check(parsed)
+	if issues != nil && issues.Err() != nil {
+		b.Fatalf("type-check error: %s", issues.Err())
+	}
+	prg, err := env.Program(checked)
+	if err != nil {
+		b.Fatalf("program construction error: %s", err)
+	}
+
+	var out ref.Val
+
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		out, _, err = prg.Eval(params)
+	}
+	b.StopTimer()
+
+	if err != nil {
+		b.Fatal(err)
+	}
+	if out.Value().(string) != "hello, world" {
 		b.Fail()
 	}
 }

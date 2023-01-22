@@ -1,34 +1,29 @@
 # Go expression evaluation comparison
 
-I've created an [expression evaluation package](https://github.com/antonmedv/expr) and wanted to compare it performance
-against other similar project. So I created this this repository with benchmarks for various packages.
-
-Here is results (lower is better):
+I've created an [expression evaluation package](https://github.com/antonmedv/expr) 
+and wanted to compare it performance against other similar project. So I created
+this repository with benchmarks for various packages.
 
 Benchmarks are run with the following specs:
+
 ```
 goos: darwin
 goarch: amd64
-cpu: Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz
+cpu: Intel(R) Core(TM) i7-6820HQ CPU @ 2.70GHz
 ```
 
-Basic Benchmark:
-```
-Benchmark_expr-16                       184196986              134.2 ns/op
-Benchmark_celgo-16                      122053126              187.4 ns/op
-Benchmark_govaluate-16                  77529223               295.3 ns/op
-Benchmark_goja-16                       79449454               331.2 ns/op
-Benchmark_gval-16                       30330537               744.4 ns/op
-Benchmark_otto-16                       30256912               860.9 ns/op
-Benchmark_evalfilter-16                 13407027               1780 ns/op
-Benchmark_bexpr-16                      10721992               2309 ns/op
-Benchmark_starlark-16                    4600719               5295 ns/op
-```
+Benchmarks (lower is better):
 
-StartsWith Benchmark:
 ```
-Benchmark_expr_startswith-16            81022359               280.1 ns/op
-Benchmark_celgo_startswith-16           66076286               327.7 ns/op
+Benchmark_expr-8               	137284434	       175.0 ns/op
+Benchmark_celgo-8              	124539046	       193.3 ns/op
+Benchmark_govaluate-8          	78848359	       302.6 ns/op
+Benchmark_goja-8               	63050496	       387.7 ns/op
+Benchmark_gval-8               	31351183	       767.4 ns/op
+Benchmark_otto-8               	29288571	       825.0 ns/op
+Benchmark_evalfilter-8         	10204525	      2330 ns/op
+Benchmark_bexpr-8              	 8534502	      2811 ns/op
+Benchmark_starlark-8           	 4184384	      5728 ns/op
 ```
 
 ## Usage
