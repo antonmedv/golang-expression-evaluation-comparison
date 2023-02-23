@@ -58,13 +58,14 @@ func Benchmark_expr_startswith(b *testing.B) {
 }
 
 func Benchmark_expr_func(b *testing.B) {
-	params := map[string]interface{}{
-		"join": func(a, b string) string {
-			return a + b
+	join := expr.Function(
+		"join",
+		func(params ...interface{}) (interface{}, error) {
+			return params[0].(string) + params[1].(string), nil
 		},
-	}
+	)
 
-	program, err := expr.Compile(`join("hello", ", world")`, expr.Env(params))
+	program, err := expr.Compile(`join("hello", ", world")`, join)
 	if err != nil {
 		b.Fatal(err)
 	}
@@ -73,7 +74,7 @@ func Benchmark_expr_func(b *testing.B) {
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		out, err = expr.Run(program, params)
+		out, err = expr.Run(program, nil)
 	}
 	b.StopTimer()
 

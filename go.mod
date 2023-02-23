@@ -5,7 +5,7 @@ go 1.16
 require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/PaesslerAG/gval v1.2.1
-	github.com/antonmedv/expr v1.10.3
+	github.com/antonmedv/expr v1.12.1
 	github.com/dop251/goja v0.0.0-20230122112309-96b1610dd4f7
 	github.com/google/cel-go v0.13.0
 	github.com/hashicorp/go-bexpr v0.1.11
