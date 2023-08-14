@@ -85,3 +85,28 @@ func Benchmark_expr_func(b *testing.B) {
 		b.Fail()
 	}
 }
+
+func Benchmark_expr_map(b *testing.B) {
+	env := map[string]interface{}{
+		"array": createRange(1, 100),
+	}
+	program, err := expr.Compile(`map(array, # * 2)`, expr.Env(env))
+	if err != nil {
+		b.Fatal(err)
+	}
+
+	var out interface{}
+
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		out, err = expr.Run(program, env)
+	}
+	b.StopTimer()
+
+	if err != nil {
+		b.Fatal(err)
+	}
+	if out.([]interface{})[0] != 2 {
+		b.Fail()
+	}
+}

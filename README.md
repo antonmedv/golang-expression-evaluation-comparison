@@ -8,22 +8,45 @@ Benchmarks are run with the following specs:
 
 ```
 goos: darwin
-goarch: amd64
-cpu: Intel(R) Core(TM) i7-6820HQ CPU @ 2.70GHz
+goarch: arm64
+cpu: Apple M2
 ```
 
-Benchmarks (lower is better):
+Benchmarks:
 
 ```
-Benchmark_expr-8               	137284434	       175.0 ns/op
-Benchmark_celgo-8              	124539046	       193.3 ns/op
-Benchmark_govaluate-8          	78848359	       302.6 ns/op
-Benchmark_goja-8               	63050496	       387.7 ns/op
-Benchmark_gval-8               	31351183	       767.4 ns/op
-Benchmark_otto-8               	29288571	       825.0 ns/op
-Benchmark_evalfilter-8         	10204525	      2330 ns/op
-Benchmark_bexpr-8              	 8534502	      2811 ns/op
-Benchmark_starlark-8           	 4184384	      5728 ns/op
+Benchmark_expr-8               	342251774	        70.27 ns/op
+Benchmark_celgo-8              	263402224	        91.27 ns/op
+Benchmark_goja-8               	164888170	        146.2 ns/op
+Benchmark_govaluate-8          	157343320	        152.9 ns/op
+Benchmark_otto-8               	63185932	        380.1 ns/op
+Benchmark_gval-8               	58023624	        412.9 ns/op
+Benchmark_evalfilter-8         	24184514	        990.6 ns/op
+Benchmark_bexpr-8              	18741454	        1276 ns/op
+Benchmark_starlark-8           	 9002794	        2653 ns/op
+```
+
+And additional benchmarks for some specific cases. 
+
+Starts with:
+
+```
+Benchmark_expr_startswith-8    	192129724	       124.9 ns/op
+Benchmark_celgo_startswith-8   	178077362	       134.8 ns/op
+```
+
+Custom function call:
+
+```
+Benchmark_expr_func-8          	260001452	        92.33 ns/op
+Benchmark_celgo_func-8         	217867923	       110.2 ns/op
+```
+
+Map predicate:
+
+```
+Benchmark_expr_map-8           	 5089671	      4695 ns/op
+Benchmark_celgo_map-8          	  982980	     24421 ns/op
 ```
 
 ## Usage

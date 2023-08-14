@@ -17,3 +17,11 @@ type Params struct {
 	Value   int
 	Adults  int
 }
+
+func createRange(from, to int) []int {
+	array := make([]int, to-from+1)
+	for i := range array {
+		array[i] = i + from
+	}
+	return array
+}

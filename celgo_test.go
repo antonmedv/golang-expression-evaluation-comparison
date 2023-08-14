@@ -136,3 +136,44 @@ func Benchmark_celgo_func(b *testing.B) {
 		b.Fail()
 	}
 }
+
+func Benchmark_celgo_map(b *testing.B) {
+	params := map[string]interface{}{
+		"array": createRange(1, 100),
+	}
+
+	env, err := cel.NewEnv(
+		cel.Variable("array", cel.ListType(cel.IntType)),
+	)
+	if err != nil {
+		b.Fatal(err)
+	}
+
+	parsed, issues := env.Parse(`array.map(x, x * 2)`)
+	if issues != nil && issues.Err() != nil {
+		b.Fatalf("parse error: %s", issues.Err())
+	}
+	checked, issues := env.Check(parsed)
+	if issues != nil && issues.Err() != nil {
+		b.Fatalf("type-check error: %s", issues.Err())
+	}
+	prg, err := env.Program(checked)
+	if err != nil {
+		b.Fatalf("program construction error: %s", err)
+	}
+
+	var out ref.Val
+
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		out, _, err = prg.Eval(params)
+	}
+	b.StopTimer()
+
+	if err != nil {
+		b.Fatal(err)
+	}
+	if out.Value().([]ref.Val)[0].Value().(int64) != 2 {
+		b.Fail()
+	}
+}
